@@ -8,10 +8,10 @@ import MobileNav from "./mobile-nav";
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <Container className="flex h-16 items-center gap-4">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60">
+      <Container className="flex h-16 min-w-0 items-center gap-2 sm:gap-4">
         {/* Logo */}
-        <div className="shrink-0">
+        <div className="min-w-0 shrink-0">
           <Logo />
         </div>
 
@@ -19,16 +19,16 @@ export default function Header() {
         <NavMenu />
 
         {/* Search */}
-        <div className="hidden flex-1 justify-center lg:flex">
+        <div className="hidden min-w-0 flex-1 justify-center lg:flex">
           <SearchBar />
         </div>
 
         {/* Right Actions */}
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex min-w-0 shrink-0 items-center gap-1 sm:gap-2">
           <HeaderActions />
 
           {/* Mobile Navigation */}
-          <div className="lg:hidden">
+          <div className="shrink-0 lg:hidden">
             <MobileNav />
           </div>
         </div>

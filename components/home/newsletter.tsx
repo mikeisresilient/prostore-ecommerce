@@ -31,8 +31,7 @@ export default function Newsletter() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-xl text-muted-foreground">
-            Get updates about new products, collections, and
-            special offers.
+            Get updates about new products, collections, and special offers.
           </p>
 
           {submitted ? (
@@ -45,12 +44,9 @@ export default function Newsletter() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row"
+              className="mx-auto mt-8 flex w-full max-w-xl flex-col gap-3 sm:flex-row"
             >
-              <label
-                htmlFor="newsletter-email"
-                className="sr-only"
-              >
+              <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
 
@@ -59,17 +55,15 @@ export default function Newsletter() {
                 type="email"
                 required
                 value={email}
-                onChange={(event) =>
-                  setEmail(event.target.value)
-                }
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Enter your email"
                 autoComplete="email"
-                className="h-11 min-w-0 flex-1 rounded-lg border border-border bg-background px-4 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/30"
+                className="min-h-14 w-full rounded-lg border border-border bg-background px-4 py-3 text-base leading-normal outline-none transition-colors placeholder:text-muted-foreground focus:border-ring focus:ring-2 focus:ring-ring/30"
               />
 
               <button
                 type="submit"
-                className="inline-flex h-11 shrink-0 items-center justify-center rounded-lg bg-primary px-6 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                className="inline-flex min-h-14 w-full shrink-0 items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
               >
                 Subscribe
               </button>

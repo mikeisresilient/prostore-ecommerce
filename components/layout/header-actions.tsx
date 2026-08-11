@@ -6,8 +6,11 @@ import CurrencySelector from "./currency-selector";
 
 export default function HeaderActions() {
   return (
-    <div className="flex items-center gap-2">
-      <CurrencySelector />
+    <div className="flex min-w-0 shrink-0 items-center gap-1 sm:gap-2">
+      <div className="hidden sm:block">
+        <CurrencySelector />
+      </div>
+
       <ThemeToggle />
       <WishlistButton />
       <CartButton />
