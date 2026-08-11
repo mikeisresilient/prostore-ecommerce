@@ -113,7 +113,7 @@ export default function RegisterPage() {
                 onChange={(event) =>
                   setName(event.target.value)
                 }
-                placeholder="John Doe"
+                placeholder="Ahmed Christian"
                 autoComplete="name"
                 required
                 disabled={loading}
