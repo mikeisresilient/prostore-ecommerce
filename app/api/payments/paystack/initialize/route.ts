@@ -2,11 +2,35 @@ import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { verifyMobileToken } from "@/lib/mobile-auth";
 
 export async function POST(request: Request) {
   const session = await auth();
 
-  if (!session?.user?.id) {
+  let userId = session?.user?.id;
+
+  if (!userId) {
+    const authorization =
+      request.headers.get("authorization");
+
+    if (authorization?.startsWith("Bearer ")) {
+      const token = authorization.slice(7).trim();
+
+      try {
+        const mobileUser =
+          await verifyMobileToken(token);
+
+        userId = mobileUser.id;
+      } catch (error) {
+        console.error(
+          "Mobile authentication error:",
+          error
+        );
+      }
+    }
+  }
+
+  if (!userId) {
     return NextResponse.json(
       {
         error:
@@ -36,7 +60,7 @@ export async function POST(request: Request) {
     const order = await prisma.order.findFirst({
       where: {
         id: orderId,
-        userId: session.user.id,
+        userId,
       },
     });
 
@@ -126,9 +150,11 @@ export async function POST(request: Request) {
           amount: String(amountInKobo),
           currency: order.chargedCurrency,
           reference,
+          callback_url:
+            "https://prostore-ecommerce.vercel.app/api/mobile/paystack-callback",
           metadata: {
             orderId: order.id,
-            userId: session.user.id,
+            userId,
             currency: order.currency,
             chargedCurrency:
               order.chargedCurrency,
